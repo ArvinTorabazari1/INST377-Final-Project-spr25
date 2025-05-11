@@ -13,11 +13,11 @@ const supabaseKey= process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 
 app.get('/', (req, res) => {
-    res.sendFile('INST377-Project-Home-Page.html', { root: __dirname });
+    res.sendFile('public/INST377-Project-Home-Page.html', { root: __dirname });
   });
 
   app.get('/stocks', (req, res) => {
-    res.sendFile('INST377-Chart-Test.html', { root: __dirname });
+    res.sendFile('public/INST377-Chart-Test.html', { root: __dirname });
   });
 
 app.get('/recentlySearchedStocks', async(req, res) => {
