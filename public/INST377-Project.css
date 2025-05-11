@@ -1,0 +1,86 @@
+body {
+    background-color: #003366;
+}
+
+#pageHeader {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: white;
+    background-color: #7c7c7c;
+    font-family: cursive;
+    flex-direction: column;
+}
+
+#logoTitleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#navigationBar {
+    font-family: Cambria;
+    background-color: #7c7c7c;
+    text-align: center;
+}
+
+#navigationBar li a {
+    text-decoration: none;
+    color: white;
+}
+
+#navigationBar li a:hover {
+    background-color: #003366;
+}
+
+
+#navigationBar li {
+    display: inline-block;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+#pageFooter {
+    color: white;
+    background-color: #7c7c7c;
+    text-align: center;
+    padding: 5px;
+    margin-top: 10px;
+    font-family: Cambria;
+}
+
+#chartDataDisplay {
+    text-align: center;
+    color: white;
+}
+
+
+#backButton {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 10px;
+}
+
+#backButton img {
+    display: block;
+    background-color: transparent;
+    border: none;
+    height: 40px;
+}
+
+#favoritesButton {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 10px;
+}
+
+#favoritesButton img {
+    display: block;
+    background-color: transparent;
+    border: none;
+    height: 40px;
+}
+

@@ -12,6 +12,14 @@ const supabaseUrl=process.env.SUPABASE_URL;
 const supabaseKey= process.env.SUPABASE_KEY;
 const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
 
+app.get('/', (req, res) => {
+    res.sendFile('INST377-Project-Home-Page.html', { root: __dirname });
+  });
+
+  app.get('/stocks', (req, res) => {
+    res.sendFile('INST377-Chart-Test.html', { root: __dirname });
+  });
+
 app.get('/recentlySearchedStocks', async(req, res) => {
     console.log('Attempting to GET all recently searched stocks');
     const { data, error } = await supabase.from('recentlySearchedStock').select();
@@ -27,15 +35,21 @@ app.get('/recentlySearchedStocks', async(req, res) => {
 app.post('/recentlySearchedStock', async(req,res) => {
     console.log('Adding Stock');
     console.log(req.body);
-    const stockSearchedId = req.body.id;
+    const num_times_searched = req.body.num_times_stock_searched;
     const recentlySearchedStock = req.body.recently_searched_stock;
     const { data, error } = await supabase
     .from('recentlySearchedStock')
     .insert({
-      id: stockSearchedId,
-      recently_searched_stock: recentlySearchedStock
+      recently_searched_stock: recentlySearchedStock,
+      num_times_stock_searched: num_times_searched
     })
     .select();
+
+    if(num_times_searched === null) {
+        num_times_searched = 1;
+    } else {
+        num_times_searched += 1;
+    }
     
     if (error) {
         console.log('Error');

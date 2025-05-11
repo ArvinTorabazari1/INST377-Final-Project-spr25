@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>Stock Genius</title>
+        <link rel="stylesheet" href="INST377-Project.css">
+        <script src="INST377-Chart-Test.js" defer></script>
+    </head>
+
+    <body>
+        <header id = pageHeader>
+            <!-- Div For Header Text and Logo -->
+            <div id="logoTitleContainer">
+                <h1>Stock Genius</h1>
+                <img src="stockgeniuslogo.png" alt="logo" height="60px" width="60px">
+            </div>
+            <!-- Navigation Bar Buttons -->
+            <nav id="navigationBar">
+                <ul>
+                    <li><a href="INST377-Project-Home-Page.html">Home</a></li>
+                    <li><a href="INST377-Project-Help-Page.html">Help</a></li>
+                    <li><a href="INST377-Project-About-Page.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div>
+            <form id="stockForm" onsubmit="return false">
+                <label for="stockTicker">Ticker: </label>
+                <input type="text" id="stockTicker" maxlength="5" required>
+                <br>
+                <input type="button" value="Lookup!" onclick="redirectToChartPage()">
+            </form>
+        </div>
+
+        <div id="stockWatchlist">
+            <h2>Watchlist</h2>
+            <table id="watchlistDisplay">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Price</th>
+                        <th>Price Change</th>
+                        <th>Percent Change</th>
+                    </tr>
+                </thead>
+                <tbody id="watchlistBody"></tbody>
+            </table>
+        </div>
+
+        <div id="recentlySearchedList">
+            <h2>Watchlist</h2>
+            <table id="recentlySearchedListDisplay">
+                <thead>
+                    <tr>
+                        <th>Ticker</th>
+                        <th>Price</th>
+                        <th>Price Change</th>
+                        <th>Percent Change</th>
+                    </tr>
+                </thead>
+                <tbody id="recentlySearchedListBody"></tbody>
+            </table>
+        </div>
+
+        <footer id ="pageFooter">
+            <p>Designed by: Arvin Torabazari</p>
+            <p>For any questions email me at: arvintorabazari@gmail.com</p>
+        </footer>
+    </body>
+</html>

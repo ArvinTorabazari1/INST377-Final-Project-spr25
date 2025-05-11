@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>charting test</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+        <script src="INST377-Chart-Test.js" defer></script>
+        <link rel="stylesheet" href="INST377-Project.css">
+        
+    </head>
+
+    <body>
+        <header id = pageHeader>
+            <!-- Div For Header Text and Logo -->
+            <div id="logoTitleContainer">
+                <h1>Stock Genius</h1>
+                <img src="stockgeniuslogo.png" alt="logo" height="60px" width="60px">
+            </div>
+            <!-- Navigation Bar Buttons -->
+            <nav id="navigationBar">
+                <ul>
+                    <li><a href="INST377-Project-Home-Page.html">Home</a></li>
+                    <li><a href="INST377-Project-Help-Page.html">Help</a></li>
+                    <li><a href="INST377-Project-About-Page.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <button id = "backButton" onclick="location.href='INST377-Project-Home-Page.html'"> 
+            <img src="backbutton.png">
+        </button>
+
+        <button id ="favoritesButton" onclick="favorites()">
+            <img src="https://static-00.iconduck.com/assets.00/favorites-icon-2048x1960-yopz8vek.png">
+        </button>
+    
+        <h2 id = "chartPriceDisplay"></h2> 
+        <h2 id = "chartTickerDisplay"></h2> 
+        <h2 id = "priceChangeDisplay"></h2> 
+        <h2 id = "percentChangeDisplay"></h2> 
+        <h2 id = "openDisplay"></h2>
+        <h2 id = "lowDisplay"></h2>
+        <h2 id = "highDisplay"></h2>
+        
+        <!-- Div to create the chart  -->
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+
+
+        <footer id ="pageFooter">
+            <p>Designed by: Arvin Torabazari</p>
+            <p>For any questions email me at: arvintorabazari@gmail.com</p>
+        </footer>
+
+    </body>
+</html>
