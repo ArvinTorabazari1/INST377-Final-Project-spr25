@@ -22,7 +22,10 @@ async function loadRecentlySearhedStock() {
       stockTableRow.appendChild(stockTableTicker);
       stockTableRow.appendChild(stockTableNumTimesSearched);
 
+      table.appendChild(stockTableRow);
+
     })
+
   })
 }
 // function redirectToChartPage() {
