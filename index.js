@@ -1,0 +1,50 @@
+const supabaseClient = require('@supabase/supabase-js');
+const bodyParser = require('body-parser');
+const express = require('express');
+const dotenv = require('dotenv');
+dotenv.config();
+
+const app = express();
+const port = 3000;
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
+const supabaseUrl=process.env.SUPABASE_URL;
+const supabaseKey= process.env.SUPABASE_KEY;
+const supabase = supabaseClient.createClient(supabaseUrl, supabaseKey);
+
+app.get('/recentlySearchedStocks', async(req, res) => {
+    console.log('Attempting to GET all recently searched stocks');
+    const { data, error } = await supabase.from('recentlySearchedStock').select();
+
+    if (error) {
+        console.log('Error');
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+})
+
+app.post('/recentlySearchedStock', async(req,res) => {
+    console.log('Adding Stock');
+    console.log(req.body);
+    const stockSearchedId = req.body.id;
+    const recentlySearchedStock = req.body.recently_searched_stock;
+    const { data, error } = await supabase
+    .from('recentlySearchedStock')
+    .insert({
+      id: stockSearchedId,
+      recently_searched_stock: recentlySearchedStock
+    })
+    .select();
+    
+    if (error) {
+        console.log('Error');
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+})
+
+app.listen(port, () => {
+    console.log('APP IS ALIVEEE');
+});
