@@ -7,7 +7,7 @@ let selectedPercentChange = "";
 
 //Need to change to supabase, used local storage for testing functionality 
 async function loadRecentlySearhedStock() {
-  await fetch ('/recentlySearchedStocks')
+  await fetch (`${window.location.href}/recentlySearchedStocks`)
   .then((result) => result.json())
   .then((resultJson) => {
     const table = document.getElementById('recentlySearchedListDisplay')
