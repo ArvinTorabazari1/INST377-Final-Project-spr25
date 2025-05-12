@@ -5,9 +5,9 @@ let selectedPriceChange = "";
 let selectedPercentChange = "";
 
 
-//Need to change to supabase, used local storage for testing functionality 
-async function loadRecentlySearhedStock() {
-  await fetch (`${window.location.href}/recentlySearchedStocks`)
+//Function for Loading Recently Searched Stock List called when chart test html page loaded
+async function loadRecentlySearchedStock() {
+  await fetch (`${window.location.href}recentlySearchedStocks`)
   .then((result) => result.json())
   .then((resultJson) => {
     const table = document.getElementById('recentlySearchedListDisplay')
@@ -28,23 +28,25 @@ async function loadRecentlySearhedStock() {
 
   })
 }
-// function redirectToChartPage() {
-//   const stockSelected = document.getElementById("stockTicker").value.toUpperCase();
-//   localStorage.setItem("selectedStock", stockSelected);
-//   location.href = "INST377-Chart-Test.html";
-// }
 
+//function for setting the stock from the form into local storage and redirecting to chart page, called when form is submitted
+function redirectToChartPage() {
+  const stockSelected = document.getElementById("stockTicker").value.toUpperCase();
+  localStorage.setItem("selectedStock", stockSelected);
+  location.href = "/stocks";
+}
+
+//function for gathering the stock searched for the form and using that stock searched to fetch the API. Called when populate chart is, populate chart is called when the chart test page is loaded
 function loadStockAPI() {
-    const apiKey = process.env.API_KEY;
     const stockSelected = localStorage.getItem("selectedStock");
     console.log("Selected stock:", stockSelected);
-    return fetch(`https://api.twelvedata.com/time_series?symbol=${stockSelected}&interval=1day&apikey=${apiKey}`)
+    return fetch(`https://api.twelvedata.com/time_series?symbol=${stockSelected}&interval=1day&apikey=f0655d8fc0114490b952887f5f12b51e`)
     .then((result) =>
     result.json()
     );
 }
 
-
+//function for populating the chart, getting values from API, and changing UI based on those values. Global variables are also set in this function. Called when chart page loads
 async function populateChart() {
     const data = await loadStockAPI();
     console.log(data)
@@ -94,6 +96,14 @@ async function populateChart() {
     selectedPrice = mostRecentClosingPrice;
     selectedPriceChange = priceChange; 
     selectedPercentChange = percentChange;
+
+    await fetch('/recentlySearchedStock', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ recently_searched_stock: selectedTicker })
+    });
 
     const key = `watchlist ${selectedTicker}`;
     const status = localStorage.getItem(key);
@@ -172,6 +182,7 @@ async function populateChart() {
   });
 }
 
+//function for setting favorites, called when the favorites button is clicked on
 function favorites() {
   const key = `watchlist ${selectedTicker}`;
   const status = localStorage.getItem(key)
@@ -231,6 +242,7 @@ function favorites() {
   
 }
 
+//function for displaying watchlist, called when home page is loaded
 function displayWatchlist() {
   const watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
   const tableBody = document.getElementById("watchlistBody");
@@ -261,14 +273,17 @@ function displayWatchlist() {
   })
 }
 
+
+//logic for calling functions onload 
 window.onload = function () {
   const url = window.location.pathname;
 
-  if (url.match("INST377-Chart-Test.html")) {
+  if (url.match("/stocks")) {
       populateChart(); 
   }
 
-  if (url.match("INST377-Project-Home-Page.html")) {
-      displayWatchlist(); 
-  }
+  if (url.match("/") ) {
+      displayWatchlist();
+      loadRecentlySearchedStock();
+  } 
 };
