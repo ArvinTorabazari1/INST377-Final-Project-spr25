@@ -1,4 +1,4 @@
-// Local variables as I will need them for displaying ticker price change percent change on the recently 
+// Global Variables 
 let selectedTicker = "";
 let selectedPrice = "";
 let selectedPriceChange = "";
@@ -84,48 +84,39 @@ function loadStockAPI() {
 async function populateChart() {
     const data = await loadStockAPI();
     console.log(data)
-
-    // Getting all dates from API 
+ 
     const allDates = data.values.map(date => date.datetime).reverse();
     console.log("dates", allDates);
     
-    // Getting all prices from API
+
     const allClosingPrices = data.values.map(closingPrice => closingPrice.close).reverse();
     console.log("closing price", allClosingPrices);
 
-    // Getting most recent price from API
     const mostRecentClosingPrice = parseFloat(data.values[0].close).toFixed(2);
     console.log("Most Recent Price:", mostRecentClosingPrice);
 
-    // Getting previous days price from API
     const previousDaysClosingPrice = parseFloat(data.values[1].close).toFixed(2);
     console.log("Previous Days Closing Price:", previousDaysClosingPrice);
 
-    //Getting the change 
     priceChange = Number((mostRecentClosingPrice - previousDaysClosingPrice).toFixed(2));
     console.log("Price Change:" ,priceChange);
 
-    //Getting the percent change 
     const percentChange = Number((((mostRecentClosingPrice - previousDaysClosingPrice) / previousDaysClosingPrice) * 100).toFixed(2));
     console.log("Percent Change:", percentChange);
 
-    //Getting the High of the day 
     const highOfDay = Number(data.values[0].high).toFixed(2);
     console.log("High of the Day: ", highOfDay);
 
-    //Getting the Low of the day
     const lowOfDay = Number(data.values[0].low).toFixed(2);
     console.log("Low of the Candle: ", lowOfDay);
 
-    //Getting the Open of the day
     const openOfDay = Number(data.values[0].open).toFixed(2);
     console.log("Open of the Candle: ", openOfDay);
 
-    //Getting stock symbol from API 
     const stockSymbol = data.meta.symbol;
     console.log("Stock Symbol:", stockSymbol);
 
-    // Setting the Local variables
+    // Setting the Global variables
     selectedTicker = stockSymbol;
     selectedPrice = mostRecentClosingPrice;
     selectedPriceChange = priceChange; 
@@ -245,16 +236,16 @@ function favorites() {
         const row = document.createElement("tr");
 
         const tickerItem = document.createElement("td");
-        tickerItem.textContent = selectedTicker;
+        tickerItem.innerHTML = selectedTicker;
 
         const priceItem = document.createElement("td");
-        priceItem.textContent = selectedPrice;
+        priceItem.innerHTML = selectedPrice;
 
         const priceChangeItem = document.createElement("td");
-        priceChangeItem.textContent = selectedPriceChange;
+        priceChangeItem.innerHTML = selectedPriceChange;
 
         const percentChangeItem = document.createElement("td");
-        percentChangeItem.textContent = selectedPercentChange;
+        percentChangeItem.innerHTML = selectedPercentChange;
 
         row.appendChild(tickerItem);
         row.appendChild(priceItem);
@@ -277,7 +268,7 @@ function favorites() {
       const rows = Array.from(tableBody.getElementsByTagName("tr"));
       rows.forEach(row => {
         const cell = row.cells[0];
-        if (cell && cell.textContent === selectedTicker) {
+        if (cell && cell.innerHTML === selectedTicker) {
           tableBody.removeChild(row);
         }
       });
@@ -298,19 +289,19 @@ function displayWatchlist() {
     const row = document.createElement("tr");
 
     const tickerCell = document.createElement("td"); 
-    tickerCell.textContent = stock.ticker;
+    tickerCell.innerHTML = stock.ticker;
     row.appendChild(tickerCell);
 
     const priceCell = document.createElement("td"); 
-    priceCell.textContent = stock.price;
+    priceCell.innerHTML = stock.price;
     row.appendChild(priceCell);
 
     const changeCell = document.createElement("td");
-    changeCell.textContent = stock.priceChange;
+    changeCell.innerHTML = stock.priceChange;
     row.appendChild(changeCell);
 
     const percentCell = document.createElement("td");
-    percentCell.textContent = `${stock.percentChange} %`;
+    percentCell.innerHTML = `${stock.percentChange} %`;
     row.appendChild(percentCell);
 
     tableBody.appendChild(row);
