@@ -22,8 +22,41 @@
         </header>
 
         <div class ="contentBox">
-            <h2>Instructions: </h2>
-            <p id="instructions"> </p>
+            <h2>User Guide:</h2>
+            <h3> Welcome to Stock Genius! This application helps beginner and retail investors visualize stock performance with ease. Review the User Guide below to make the most of the application.</h3>
+            <p><strong>Navigation Bar: </strong> Same on each page, allows you to redirect to the Home Page, Help Page, and ABout Page.</p>
+            <p><strong>Home Page:</strong> The Home Page Consists of 4 Main Features</p>
+            <ul>
+                <li><strong>Text Search: </strong>To search for a stock through text, click into the ticker box and search the stock symbol for example AAPL, MSFT, LCID etc. <strong>DO NOT SEARCH A STOCK BY COMPANY NAME ONLY TICKER.</strong> Once you input the stock ticker in the search box, click the lookup button and it will redirect you to the stocks page with the chart and data about the stock.</li>
+                <br>
+                <li><strong>Speech Search:</strong> To search for a stock through speech, click the microphone button, and allow the mic to be turned on. Once the mic is turned on, the button will change to a mic without a cross through it indicating the mic is on. search the stock symbol for example AAPL, MSFT, LCID etc. <strong>DO NOT SEARCH A STOCK BY COMPANY NAME ONLY TICKER.</strong> Once you speak the stock ticker it will automatically redirect you to the stocks page with the chart and data about the stock. </li>
+                <br>
+                <li> <strong> Watchlist:</strong> The watchlist is personal to each user. Whenever a stock is searched, the user will have the option to click a button to add the stock to the watchlist. They can also remove the stock from the watchlist by clicking the same button. <strong>Note:</strong> If you view the application on a different browser, the watchlist will be different. For example, if you initialy added the stocks to the watchlist using a Safari browser, then view the application on a Chrome browser, then the watchlist <strong>WILL NOT</strong> populate with the stocks that were favorited on the Safari browser. </li>
+                <br>
+                <li><strong>Recently Searched List:</strong> The Recently Searched List consists of the last 15 stocks searched by anyone who has searched a stock on the application. Whenever a stock is searched, it automatically gets added to the recently searched list.</li>
+            </ul>
+            <p><strong>Stocks Page:</strong> The Stocks Page Consists of 4 Main Features</p>
+            <ul>
+                <li><strong>Back Button: </strong> The back button redirects you back to the Home Page. You can also redirect back to the Home Page Using the Home button on the nav bar. </li>
+                <br>
+                <li><strong>Favorites Button: </strong> The favorites button allows the user to add the stock to their watchlist. When the button is clicked, image changes to a yellow star, and adds the stock to the watchlist. If the star is transparent, then the stock is not in the watchlist. If you click on a the star when it is yellow, it will remove the stock from the watchlist. Additonally, if a stock is favorited, and you navigate to a different page, when you return to the favorited stock, it will still display a yellow star.</li>
+                <br>
+                <li><strong>Stock Data: </strong> Once the stock page is loaded, stock data such as the stock ticker, current price, price change, percent change, low of day, high of day, and current price will all be displayed. If the price change is negative, all of this data will be red, if the price change is positive, all of this data will be green, if the price change is 0.00, then the data will be grey. </li>
+                <br>
+                <li><strong>Stock Chart: </strong> Once the stock page us loaded, the a line chart will display. If you hover over the points on the line chart, it will display a pop up with the date and closing price on that day. If the price change is negative, the line chart data  will be red, if the price change is positive, the line chart data will be green, if the price change is 0.00, then the line chart data will be grey.</li>
+            </ul>
+            <p><strong>Help Page:</strong> The Help Page Consists of 2 Sections</p>
+            <ul>
+                <li><strong>Instructions:</strong> Instructions on how to use the application.</li>
+                <li><strong>Financial Term Definitions:</strong> Definitions of a bunch of financial terms benginner investors may come across. Additionally, each term has a link to a site with more information. </li>
+            </ul>
+            <p><strong>Help Page:</strong> The Help Page Consists of 3 Sections</p>
+            <ul>
+                <li><strong>Problem:</strong> Problem Statement.</li>
+                <li><strong>Solution:</strong> Solution to the problem.</li>
+                <li><strong>About The Developer: </strong> About Me! includes an image of me and a link to my LinkedIn.</li>
+            </ul>
+
         </div>
 
         <h2 id ="financialTerms">Financial Term Definitions: </h2>
@@ -31,7 +64,7 @@
 
         <div class ="infoContentBox">
             <h2>Revenue: </h2>
-            <p id="Revenue">"Revenue is the total income generated by a business through sales of products or services. It is also referred to as sales and is a measure of a company’s health." (Robinhood, 2020). Net Revenue is the amount of money a company retains after expenses. Gross Revenue is the total amount of money brought in from sales</p>
+            <p id="Revenue">"Revenue is the total income generated by a business through sales of products or services. It is also referred to as sales and is a measure of a company’s health" (Robinhood, 2020). Net Revenue is the amount of money a company retains after expenses. Gross Revenue is the total amount of money brought in from sales</p>
             <h3>Formula: </h3>
             <p> Net Revenue = Gross Revenue - Total Selling Expenses </p>
             <h3>Link to Article For More Info: </h3>
@@ -97,7 +130,7 @@
             <a href="https://www.investopedia.com/terms/m/marketindex.asp">Investopedia Link</a>
         </div>
 
-        <div class ="etfContentBox">
+        <div class ="largerContentBox">
             <h2>Exchange Traded Funds: </h2>
             <p id="etf">"An exchange-traded fund (ETF) is an investment fund that holds multiple underlying assets and can be bought and sold on an exchange, much like an individual stock. ETFs can be structured to track anything from the price of a commodity to a large and diverse collection of stocks—even specific investment strategies. Various ETFs are available to investors for income generation, speculation, or hedging risk in an investor’s portfolio" (Chen, 2025). </p>
             <h3>Popular Exchange Traded Funds</h3>
@@ -114,11 +147,45 @@
         
         <div class ="smallerContentBox">
             <h2>Mergers: </h2>
-            <p id="mergers">"A fiscal quarter is a three-month time span in a business's financial year that it uses to report earnings and pay dividends.
-                A quarter refers to one-fourth of a year and is typically expressed as Q1 for the first quarter, Q2 for second quarter, etc., and can be expressed with the year, such as Q1 2022 (or Q1'22)" (Fernando, 2025). </p>
+            <p id="mergers">"A merger is an agreement that unites two existing companies into one new company. There are several types of mergers and reasons companies complete mergers. Mergers and acquisitions (M&A) are commonly done to expand a company’s reach, expand into new segments, or gain market share. All of these are done to increase shareholder value. Often, during a merger, companies have a no-shop clause to prevent purchases or mergers by additional companies" (Hargrave, 2024). </p>
             <h3>Link to Article For More Info: </h3>
-            <a href="https://www.investopedia.com/terms/q/quarter.asp#:~:text=A%20fiscal%20quarter%20is%20a%20three%2Dmonth%20time%20span%20in,(or%20Q1'22).">Investopedia Link</a>
+            <a href="https://www.investopedia.com/terms/m/merger.asp">Investopedia Link</a>
         </div>
+
+        <div class ="smallerContentBox">
+            <h2>Acquisitions: </h2>
+            <p id="acquisitions">"An acquisition is when one company takes hold of another company by buying all or a majority of its shares, allowing it to direct the company's operations and strategy" (Kenton, 2025). </p>
+            <h3>Link to Article For More Info: </h3>
+            <a href="https://www.investopedia.com/terms/a/acquisition.asp">Investopedia Link</a>
+        </div>
+
+        <div class ="splitContentBox">
+            <h2>Stock Splits: Reverse Split VS Forward Splits </h2>
+            <ul>
+                <li>Forward Splits: "A stock split is when a company increases the number of its outstanding shares to boost the stock's liquidity.
+                    Although the number of shares outstanding increases, there is no change to the company's total market capitalization as the price of each share is split as well" (Gratton, 2024). </li>
+                <li>Reverse Splits: "Reverse stock splits are the opposite, in which a company lowers the number of shares outstanding to raise its stock price" (Gratton, 2024).</li>
+            </ul>
+
+            <h3>Forward and Reverse Split Examples</h3>
+            <ul>
+                <li>Forward Split: 2-1 (2 for 1)
+                    <ul>
+                        <li>The number of shares outstanding double, if there were 10 million, there is now 20 million outstanding.</li>
+                        <li>The price of the stock splits in half, if it was $10 it is now $5.</li>
+                      </ul>
+                </li>
+                <li>Reverse Split: 1-2 (1 for 2)
+                    <ul>
+                        <li>The number of shares outstanding split in half, if there were 10 million, there is now 5 million outstanding.</li>
+                        <li>The price of the stock doubles, if it was $10 it is now $20.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h3>Link to Article For More Info: </h3>
+            <a href="https://www.investopedia.com/terms/s/stocksplit.asp#toc-what-is-a-stock-split">Investopedia Link</a>
+        </div>
+
 
 
         <!-- Footer -->

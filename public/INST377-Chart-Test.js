@@ -62,6 +62,10 @@ async function loadRecentlySearchedStock() {
 //function for setting the stock from the form into local storage and redirecting to chart page, called when form is submitted
 function redirectToChartPage() {
   const stockSelected = document.getElementById("stockTicker").value.toUpperCase();
+  if (!stockSelected) {
+    alert("Please enter a stock ticker.");
+    return;
+  }
   localStorage.setItem("selectedStock", stockSelected);
   location.href = "/stocks";
 }
@@ -146,13 +150,13 @@ async function populateChart() {
     }
 
    
-    document.getElementById("chartPriceDisplay").innerHTML = `Closing Price: $${mostRecentClosingPrice}`;
+    document.getElementById("chartPriceDisplay").innerHTML = `Current Price: $${mostRecentClosingPrice}`;
     document.getElementById("chartTickerDisplay").innerHTML += ` Symbol: $${stockSymbol}`;
     document.getElementById("priceChangeDisplay").innerHTML += ` Price Change: ${priceChange}`;
     document.getElementById("percentChangeDisplay").innerHTML += ` Percent Change: ${percentChange}%`;
-    document.getElementById("openDisplay").innerHTML += ` Open: ${openOfDay}`;
-    document.getElementById("lowDisplay").innerHTML += ` Low: ${lowOfDay}`;
-    document.getElementById("highDisplay").innerHTML += ` High: ${highOfDay}`;
+    document.getElementById("openDisplay").innerHTML += ` Open of Day : ${openOfDay}`;
+    document.getElementById("lowDisplay").innerHTML += ` Low of Day: ${lowOfDay}`;
+    document.getElementById("highDisplay").innerHTML += ` High of Day: ${highOfDay}`;
     
 
     let lineColor;
@@ -199,7 +203,6 @@ async function populateChart() {
         data: allClosingPrices,
         borderColor: lineColor,
         borderWidth: 1,
-        pointRadius: 0
       }]
     },
     options: {

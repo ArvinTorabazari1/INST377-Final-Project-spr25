@@ -24,21 +24,31 @@
             </nav>
         </header>
 
-        <button id = "backButton" onclick="location.href='/'"> 
-            <img src="backbutton.png">
-        </button>
-
-        <button id ="favoritesButton" onclick="favorites()">
-            <img src="https://static-00.iconduck.com/assets.00/favorites-icon-2048x1960-yopz8vek.png">
-        </button>
+        <div id="stockButtons">
+            <button id = "backButton" onclick="location.href='/'"> 
+                <img src="backbutton.png">
+            </button>
     
+            <button id ="favoritesButton" onclick="favorites()">
+                <img src="https://static-00.iconduck.com/assets.00/favorites-icon-2048x1960-yopz8vek.png">
+            </button>
+        </div>
+
+        
+    <div id="tickerAndPrice"> 
+        <h2 id = "chartTickerDisplay"></h2>
         <h2 id = "chartPriceDisplay"></h2> 
-        <h2 id = "chartTickerDisplay"></h2> 
+    </div>
+
+    <div id="percentAndPriceChange">
         <h2 id = "priceChangeDisplay"></h2> 
         <h2 id = "percentChangeDisplay"></h2> 
-        <h2 id = "openDisplay"></h2>
+    </div>
+    <div id="lowAndHigh">
         <h2 id = "lowDisplay"></h2>
         <h2 id = "highDisplay"></h2>
+    </div>
+        <h2 id = "openDisplay"></h2>
         
         <!-- Div to create the chart  -->
         <div>

@@ -112,6 +112,16 @@ body {
     padding: 10px;
     margin: 40px;
     width: 95%;
+    height: 90%;
+}
+
+.problemAndSolutionContentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
     height: 15%;
 }
 
@@ -142,7 +152,7 @@ body {
     height: 20%;
 }
 
-.etfContentBox {
+.largerContentBox {
     background-color: aliceblue;
     color: black;
     border: 2px solid black;
@@ -150,6 +160,16 @@ body {
     margin: 40px;
     width: 95%;
     height: 35%;
+}
+
+.splitContentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
+    height: 42%;
 }
 
 #watchlistsHome {
@@ -197,4 +217,48 @@ body {
   #recentlySearchedList td {
     border: 1px solid black;
     color: black;
+  }
+
+  #tickerAndPrice {
+    display: flex;
+    justify-content: center;
+    gap: 500px;
+  }
+
+  #percentAndPriceChange {
+    display: flex;
+    justify-content: center;
+    gap: 500px;
+  }
+
+  #lowAndHigh {
+    display: flex;
+    justify-content: center;
+    gap: 500px;
+  }
+
+  #openDisplay {
+    text-align: center;
+  }
+
+  .aboutContentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
+    height: 48%;
+}
+
+  #arvin {
+    margin-left: 1350px;
+    height: 300px;
+    width: 300px;
+  }
+
+  #stockButtons {
+    display: flex;
+    justify-content: center;
+    gap: 650px;
   }
