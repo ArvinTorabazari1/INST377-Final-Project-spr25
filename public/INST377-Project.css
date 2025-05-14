@@ -1,5 +1,6 @@
 body {
     background-color: #003366;
+    color: white;
 }
 
 #pageHeader {
@@ -39,6 +40,20 @@ body {
     display: inline-block;
     padding-left: 100px;
     padding-right: 100px;
+}
+
+#micButton {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 10px;
+}
+
+#micButton img {
+    display: block;
+    background-color: transparent;
+    border: none;
+    height: 40px;
 }
 
 #pageFooter {
@@ -84,3 +99,102 @@ body {
     height: 40px;
 }
 
+#stockTicker {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 22%;
+}
+
+.contentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
+    height: 15%;
+}
+
+.infoContentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
+    height: 30%;
+}
+#financialTerms {
+    margin-left: 40px;
+}
+
+#wompWomp {
+    margin-left: 40px;
+}
+
+.smallerContentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
+    height: 20%;
+}
+
+.etfContentBox {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 95%;
+    height: 35%;
+}
+
+#watchlistsHome {
+    display: flex;
+    gap: 950px;
+    align-items: flex-start;
+    margin-left: 40px;
+}
+
+#stockWatchlist {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 15%;
+    text-align: center;
+  }
+  
+  #stockWatchlist th {
+    border: 1px solid black;
+    color: black;
+  }
+  
+  #stockWatchlist td {
+    border: 1px solid black;
+    color: black;
+  }
+
+  #recentlySearchedList {
+    background-color: aliceblue;
+    color: black;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 40px;
+    width: 15%;
+    text-align: center;
+}
+
+#recentlySearchedList th {
+    border: 1px solid black;
+    color: black;
+  }
+  
+  #recentlySearchedList td {
+    border: 1px solid black;
+    color: black;
+  }

@@ -20,6 +20,14 @@ app.get('/', (req, res) => {
     res.sendFile('public/INST377-Chart-Test.html', { root: __dirname });
   });
 
+  app.get('/help', (req, res) => {
+    res.sendFile('public/INST377-Project-Help-Page.html', { root: __dirname });
+  });
+
+  app.get('/about', (req, res) => {
+    res.sendFile('public/INST377-Project-About-Page.html', { root: __dirname });
+  });
+
 app.get('/recentlySearchedStocks', async(req, res) => {
     console.log('Attempting to GET all recently searched stocks');
     const { data, error } = await supabase.from('recentlySearchedStock').select();

@@ -2,6 +2,7 @@
     <head>
         <title>Stock Genius</title>
         <link rel="stylesheet" href="INST377-Project.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.1/annyang.min.js" defer></script>
         <script src="INST377-Chart-Test.js" defer></script>
     </head>
 
@@ -16,51 +17,55 @@
             <nav id="navigationBar">
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="INST377-Project-Help-Page.html">Help</a></li>
-                    <li><a href="INST377-Project-About-Page.html">About</a></li>
+                    <li><a href="/help">Help</a></li>
+                    <li><a href="/about">About</a></li>
                 </ul>
             </nav>
         </header>
 
         <div>
             <form id="stockForm" onsubmit="return false">
-                <label for="stockTicker">Ticker: </label>
-                <input type="text" id="stockTicker" maxlength="5" required>
+                <label for="stockTicker"><strong> Ticker:</strong> </label>
+                <input type="text" id="stockTicker" maxlength="5" rewuired placeholder="Search or Speak stock: Search: AAPL Speak: search AAPL">
+                <button id = "micButton" type ="button" onclick="toggleAnnyang()"> 
+                    <img id ="micIcon" src="https://static-00.iconduck.com/assets.00/muted-icon-488x512-mg67knnq.png">
+                </button>
                 <br>
                 <input type="button" value="Lookup!" onclick="redirectToChartPage()">
             </form>
         </div>
-
-        <div id="stockWatchlist">
-            <h2>Watchlist</h2>
-            <table id="watchlistDisplay">
-                <thead>
-                    <tr>
-                        <th>Ticker</th>
-                        <th>Price</th>
-                        <th>Price Change</th>
-                        <th>Percent Change</th>
-                    </tr>
-                </thead>
-                <tbody id="watchlistBody"></tbody>
-            </table>
+        
+        <div id="watchlistsHome">
+            <div id="stockWatchlist">
+                <h2>Watchlist</h2>
+                <table id="watchlistDisplay">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Price</th>
+                            <th>Price Change</th>
+                            <th>Percent Change</th>
+                        </tr>
+                    </thead>
+                    <tbody id="watchlistBody"></tbody>
+                </table>
+            </div>
+    
+            <aside id="recentlySearchedList">
+                <h2>Recently Searched List</h2>
+                <table id="recentlySearchedListDisplay">
+                    <thead>
+                        <tr>
+                            <th>Ticker</th>
+                            <th>Number of Times Stock Searched</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentlySearchedListBody"></tbody>
+                </table>
+            </aside>
         </div>
-
-        <div id="recentlySearchedList">
-            <h2>Recently Searched list</h2>
-            <table id="recentlySearchedListDisplay">
-                <thead>
-                    <tr>
-                        <th>Ticker</th>
-                        <th>Price</th>
-                        <th>Price Change</th>
-                        <th>Percent Change</th>
-                        <th>Number of Times Stock Searched</th>
-                    </tr>
-                </thead>
-                <tbody id="recentlySearchedListBody"></tbody>
-            </table>
-        </div>
+        
+        
 
         <footer id ="pageFooter">
             <p>Designed by: Arvin Torabazari</p>

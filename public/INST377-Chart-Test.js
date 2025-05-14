@@ -4,14 +4,44 @@ let selectedPrice = "";
 let selectedPriceChange = "";
 let selectedPercentChange = "";
 
+function toggleAnnyang() {
+  if (!annyang) {
+    alert("Voice Recognition Not Avaiable On This Browser :(");
+    return;
+  } 
+
+  const micIcon = document.getElementById('micIcon');
+
+  if (annyang.isListening()) {
+    annyang.abort();
+    annyang.removeCommands();
+    micIcon.src = "https://static-00.iconduck.com/assets.00/muted-icon-488x512-mg67knnq.png";
+  } else {
+    const commands = {
+      'search *stock': function(stock) {
+        document.getElementById('stockTicker').value = stock.toUpperCase();
+        redirectToChartPage();
+      }
+    };
+
+    annyang.removeCommands();
+    annyang.addCommands(commands);
+    annyang.start();
+    micIcon.src = "micOn.png";
+  }
+}
+
 
 //Function for Loading Recently Searched Stock List called when chart test html page loaded
 async function loadRecentlySearchedStock() {
   await fetch (`${window.location.href}recentlySearchedStocks`)
   .then((result) => result.json())
   .then((resultJson) => {
-    const table = document.getElementById('recentlySearchedListDisplay')
-    resultJson.forEach((searchedStock) => {
+    const table = document.getElementById('recentlySearchedListDisplay');
+    
+    const lastFifteen = resultJson.slice(-15).reverse();
+
+    lastFifteen.forEach((searchedStock) => {
       const stockTableRow = document.createElement('tr');
       const stockTableTicker = document.createElement('td');
       const stockTableNumTimesSearched = document.createElement('td');
@@ -110,9 +140,9 @@ async function populateChart() {
     const button = document.getElementById("favoritesButton");
     
     if (status === 'enabled') {
-      button.style.backgroundColor = 'yellow';
+      button.querySelector('img').src = 'starImage.png';
     } else {
-      button.style.backgroundColor = '';
+      button.querySelector('img').src = 'https://static-00.iconduck.com/assets.00/favorites-icon-2048x1960-yopz8vek.png';
     }
 
    
@@ -121,7 +151,7 @@ async function populateChart() {
     document.getElementById("priceChangeDisplay").innerHTML += ` Price Change: ${priceChange}`;
     document.getElementById("percentChangeDisplay").innerHTML += ` Percent Change: ${percentChange}%`;
     document.getElementById("openDisplay").innerHTML += ` Open: ${openOfDay}`;
-    document.getElementById("lowDisplay").innerHTML += ` Close: ${lowOfDay}`;
+    document.getElementById("lowDisplay").innerHTML += ` Low: ${lowOfDay}`;
     document.getElementById("highDisplay").innerHTML += ` High: ${highOfDay}`;
     
 
@@ -185,62 +215,73 @@ async function populateChart() {
 //function for setting favorites, called when the favorites button is clicked on
 function favorites() {
   const key = `watchlist ${selectedTicker}`;
-  const status = localStorage.getItem(key)
+  const status = localStorage.getItem(key);
   const button = document.getElementById("favoritesButton");
 
   let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
 
-  if (status  === null || status === 'disabled') {
+  const matches = watchlist.filter(stock => stock.ticker === selectedTicker);
+
+  if (status === null || status === 'disabled') {
     localStorage.setItem(key, 'enabled');
-    button.style.backgroundColor = 'yellow';
+    button.querySelector('img').src = 'starImage.png';
 
-    const matches = watchlist.filter(stock => stock.ticker === selectedTicker);
-    if (matches.length === 0 ) {
+    if (matches.length === 0) {
       const stock = {
-          ticker: selectedTicker, 
-          price: selectedPrice, 
-          priceChange: selectedPriceChange, 
-          percentChange: selectedPercentChange
-        };
-    
-        watchlist.push(stock);
-        localStorage.setItem("watchlist", JSON.stringify(watchlist));
-        
-        const tableBody = document.getElementById("watchlistBody");
-        if(tableBody) {
-          const row = document.createElement("tr");
+        ticker: selectedTicker,
+        price: selectedPrice,
+        priceChange: selectedPriceChange,
+        percentChange: selectedPercentChange
+      };
 
-          const tickerItem = document.createElement("td");
-          tickerItem.textContent = selectedTicker;
-
-          const priceItem = document.createElement("td");
-          priceItem.textContent = selectedPrice;
-
-          const priceChangeItem = document.createElement("td");
-          priceChangeItem.textContent = selectedPriceChange;
-
-          const percentChangeItem = document.createElement("td");
-          percentChangeItem.textContent = selectedPercentChange;
-
-          row.appendChild(tickerItem);
-          row.appendChild(priceItem);
-          row.appendChild(priceChangeItem);
-          row.appendChild(percentChangeItem);
-
-          tableBody.appendChild(row);
-        }
-        
-    } else {
-      localStorage.setItem(key, 'disabled');
-      button.style.backgroundColor = '';
-
-      watchlist = watchlist.filter(stock => stock.ticker !== selectedTicker);
+      watchlist.push(stock);
       localStorage.setItem("watchlist", JSON.stringify(watchlist));
+
+      const tableBody = document.getElementById("watchlistBody");
+      if (tableBody) {
+        const row = document.createElement("tr");
+
+        const tickerItem = document.createElement("td");
+        tickerItem.textContent = selectedTicker;
+
+        const priceItem = document.createElement("td");
+        priceItem.textContent = selectedPrice;
+
+        const priceChangeItem = document.createElement("td");
+        priceChangeItem.textContent = selectedPriceChange;
+
+        const percentChangeItem = document.createElement("td");
+        percentChangeItem.textContent = selectedPercentChange;
+
+        row.appendChild(tickerItem);
+        row.appendChild(priceItem);
+        row.appendChild(priceChangeItem);
+        row.appendChild(percentChangeItem);
+
+        tableBody.appendChild(row);
+      }
     }
 
+  } else {
+    localStorage.setItem(key, 'disabled');
+    button.querySelector('img').src = 'https://static-00.iconduck.com/assets.00/favorites-icon-2048x1960-yopz8vek.png'
+
+    watchlist = watchlist.filter(stock => stock.ticker !== selectedTicker);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+
+    const tableBody = document.getElementById("watchlistBody");
+    if (tableBody) {
+      const rows = Array.from(tableBody.getElementsByTagName("tr"));
+      rows.forEach(row => {
+        const cell = row.cells[0];
+        if (cell && cell.textContent === selectedTicker) {
+          tableBody.removeChild(row);
+        }
+      });
+    }
   }
-  
 }
+
 
 //function for displaying watchlist, called when home page is loaded
 function displayWatchlist() {
@@ -266,7 +307,7 @@ function displayWatchlist() {
     row.appendChild(changeCell);
 
     const percentCell = document.createElement("td");
-    percentCell.textContent = stock.percentChange;
+    percentCell.textContent = `${stock.percentChange} %`;
     row.appendChild(percentCell);
 
     tableBody.appendChild(row);
