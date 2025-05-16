@@ -44,13 +44,10 @@ async function loadRecentlySearchedStock() {
     lastFifteen.forEach((searchedStock) => {
       const stockTableRow = document.createElement('tr');
       const stockTableTicker = document.createElement('td');
-      const stockTableNumTimesSearched = document.createElement('td');
 
       stockTableTicker.innerHTML = searchedStock.recently_searched_stock; 
-      stockTableNumTimesSearched.innerHTML = searchedStock.num_times_stock_searched;
 
       stockTableRow.appendChild(stockTableTicker);
-      stockTableRow.appendChild(stockTableNumTimesSearched);
 
       table.appendChild(stockTableRow);
 
@@ -60,12 +57,21 @@ async function loadRecentlySearchedStock() {
 }
 
 //function for setting the stock from the form into local storage and redirecting to chart page, called when form is submitted
-function redirectToChartPage() {
+async function redirectToChartPage() {
   const stockSelected = document.getElementById("stockTicker").value.toUpperCase();
   if (!stockSelected) {
     alert("Please enter a stock ticker.");
     return;
   }
+
+  await fetch('/recentlySearchedStock', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ recently_searched_stock: stockSelected })
+  });
+
   localStorage.setItem("selectedStock", stockSelected);
   location.href = "/stocks";
 }
@@ -122,13 +128,7 @@ async function populateChart() {
     selectedPriceChange = priceChange; 
     selectedPercentChange = percentChange;
 
-    await fetch('/recentlySearchedStock', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ recently_searched_stock: selectedTicker })
-    });
+    
 
     const key = `watchlist ${selectedTicker}`;
     const status = localStorage.getItem(key);

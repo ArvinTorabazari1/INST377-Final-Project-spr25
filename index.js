@@ -45,10 +45,7 @@ app.post('/recentlySearchedStock', async(req,res) => {
     console.log(req.body);
     const num_times_searched = req.body.num_times_stock_searched;
     const recentlySearchedStock = req.body.recently_searched_stock;
-    // const { error } = await supabase
-    // .from('recentlySearchedStock')
-    // .update({ num_times_stock_searched: 'piano' })
-    // .eq('id', 1)
+
     
     const { data, error } = await supabase
     .from('recentlySearchedStock')
@@ -58,11 +55,7 @@ app.post('/recentlySearchedStock', async(req,res) => {
     })
     .select();
 
-    // if(num_times_searched === null) {
-    //     num_times_searched = 1;
-    // } else {
-    //     num_times_searched += 1;
-    // }
+
     
     if (error) {
         console.log('Error');
